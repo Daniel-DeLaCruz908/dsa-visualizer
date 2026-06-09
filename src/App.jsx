@@ -155,7 +155,48 @@ class BST {
     }
     return levels
   }
+
+  getSearchSteps(value) {
+    const steps = []
+    let current = this.root
+    while (current !== null) {
+      steps.push({ value: current.value, found: value === current.value })
+      if (value === current.value) return steps
+      if (value < current.value) {
+        current = current.left
+      } else {
+        current = current.right
+      }
+    }
+  }
 }
+
+class Graph {
+  constructor() {
+    this.adjacencyList = {}
+  }
+
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+      this.adjacencyList[vertex] = []
+    }
+  }
+
+  addEdge(a, b) {
+    this.addVertex(a)
+    this.addVertex(b)
+    this.adjacencyList[a].push(b)
+    this.adjacencyList[b].push(a)
+  }
+}
+
+const graph = new Graph()
+graph.addVertex('A')
+graph.addVertex('B')
+graph.addVertex('C')
+graph.addEdge('A', 'B')
+graph.addEdge('A', 'C')
+console.log(graph.adjacencyList)
 
 function App() {
   const [array, setArray] = useState(generateArray())
@@ -169,6 +210,7 @@ function App() {
   // stores a ref for each node
   const nodeRefs = useRef({})
   const containerRef = useRef(null)
+  const [highlightedNode, setHighlightNode] = useState(null)
 
   function shuffleArray() {
     const shuffled = [...array].sort(() => Math.random() - 0.5)
@@ -336,6 +378,16 @@ function App() {
     }, [bstArray])
   })
 
+  function animateSearch() {
+    const steps = buildBST(bstArray).getSearchSteps(Number(inputValue))
+    steps.forEach((step, index) => {
+      setTimeout(() => {
+        setHighlightNode(step)
+      }, index * 500)
+    })
+    setTimeout(() => setHighlightNode(null), steps.length * 500)
+  }
+
   return (
     <div>
       <h1>DSA Visualizer</h1>
@@ -401,7 +453,11 @@ function App() {
                     {node !== undefined ? (
                       <div ref={el => nodeRefs.current[`${levelIndex}-${i}`] = el} 
                       style={{
-                        border: '2px solid coral',
+                        border: `2px solid ${
+                        highlightedNode?.value === node.value 
+                        ? highlightedNode.found ? 'green' : 'yellow' 
+                        : 'coral'
+                        }`,
                         padding: '8px',
                         borderRadius: '4px',
                         display: 'inline-block'
@@ -463,8 +519,9 @@ function App() {
         onChange={(e) => setInputValue(e.target.value)}
       />
       <button onClick={handleInsert}>Insert</button>
+      <button onClick={animateSearch}>Search</button>
 
-    </div>
+    </div> 
   )
 }
 

@@ -188,15 +188,49 @@ class Graph {
     this.adjacencyList[a].push(b)
     this.adjacencyList[b].push(a)
   }
-}
 
-const graph = new Graph()
-graph.addVertex('A')
-graph.addVertex('B')
-graph.addVertex('C')
-graph.addEdge('A', 'B')
-graph.addEdge('A', 'C')
-console.log(graph.adjacencyList)
+  bfs(start) {
+    const visited = {}
+    const queue = [start]
+    const result = []
+
+    visited[start] = true
+     
+    while (queue.length > 0) {
+      const node = queue.shift()
+      result.push(node)
+      this.adjacencyList[node].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true
+          queue.push(neighbor)
+        }
+      })
+    }
+
+    return result
+  }
+
+  dfs(start) {
+    const visited = {}
+    const stack = [start]
+    const result = []
+
+    visited[start] = true
+     
+    while (stack.length > 0) {
+      const node = stack.pop()
+      result.push(node)
+      this.adjacencyList[node].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true
+          stack.push(neighbor)
+        }
+      })
+    }
+
+    return result
+  }
+}
 
 function App() {
   const [array, setArray] = useState(generateArray())

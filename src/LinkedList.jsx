@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { buttonStyle } from './styles'
 
 class ListNode {
   constructor(value) {
@@ -94,7 +95,8 @@ function LinkedListVisualizer() {
 
 
     return(
-        <div>
+        <div style={{ padding: '32px' }}>
+          <h2 style={{ marginBottom: '16px' }}>Linked List</h2>
             <div>
             {listArray.map((value, index) => (
                 <span key={index}>
@@ -116,9 +118,11 @@ function LinkedListVisualizer() {
                 onChange={(e) => setInputValue(e.target.value)}
             />
 
-            <button onClick={handleAppend}>Append</button>
-            <button onClick={handlePrepend}>Prepend</button>
-            <button onClick={handleDelete}>Delete</button>
+            </div>
+            <div style={{ padding: '32px' }}> 
+            <button style={buttonStyle} onClick={handleAppend}>Append</button>
+            <button style={buttonStyle} onClick={handlePrepend}>Prepend</button>
+            <button style={buttonStyle} onClick={handleDelete}>Delete</button>
             </div>
         </div>
     )

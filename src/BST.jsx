@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { buttonStyle } from './styles'
 
 class BSTNode {
   constructor(value) {
@@ -162,7 +163,8 @@ function BSTVisualizer() {
     }
 
     return (
-        <div>
+        <div style={{ padding: '32px' }}>
+          <h2 style={{ marginBottom: '16px' }}>Binary Search Tree</h2>
             <div ref={containerRef} style={{ position: 'relative' }}>
                 {buildBST(bstArray).toLevels().map((level, levelIndex) => {
                 // number of possible slots doubles each level (1, 2, 4, 8...)
@@ -249,8 +251,10 @@ function BSTVisualizer() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 />
-                <button onClick={handleInsert}>Insert</button>
-                <button onClick={animateSearch}>Search</button>
+                <div style={{ padding: '32px' }}>
+                <button style={buttonStyle} onClick={handleInsert}>Insert</button>
+                <button style={buttonStyle} onClick={animateSearch}>Search</button>
+                </div>
         </div>
     )
 }

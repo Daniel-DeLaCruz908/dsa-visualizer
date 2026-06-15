@@ -8,16 +8,46 @@ import LinkedListVisualizer from './LinkedList'
 import BSTVisualizer from './BST'
 import GraphVisualizer from './Graph'
 
-function App() {  
+function App() { 
+  const [activeTab, setActiveTab] = useState('sorting') 
 
   return (
-    <div>
-      <h1>DSA Visualizer</h1>
+    <div style={{ minHeight: '100vh', backgroundColor: '#fef9ef', color: 'black' }}>
 
-      <SortingVisualizer />
-      <LinkedListVisualizer />
-      <BSTVisualizer />
-      <GraphVisualizer />
+      <nav style={{
+        backgroundColor: '#227c9d',
+        padding: '16px 32px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        <h1 style={{ color: 'black', margin: 0, fontSize: '20px' }}>DSA Visualizer</h1>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          {['sorting', 'linkedlist', 'bst', 'graph'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{
+                backgroundColor: activeTab === tab ? '#ffcb77' : 'transparent',
+                color: 'black',
+                border: 'none',
+                padding: '8px 16px',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+            >
+              {tab === 'linkedlist' ? 'Linked List' : tab === 'bst' ? 'BST' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <div style={{ padding: '32px' }}>
+        {activeTab === 'sorting' && <SortingVisualizer />}
+        {activeTab === 'linkedlist' && <LinkedListVisualizer />}
+        {activeTab === 'bst' && <BSTVisualizer />}
+        {activeTab === 'graph' && <GraphVisualizer />}
+      </div>
 
     </div> 
     

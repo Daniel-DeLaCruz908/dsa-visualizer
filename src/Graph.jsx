@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { buttonStyle } from './styles'
 
 class Graph {
   constructor() {
@@ -108,9 +109,9 @@ function GraphVisualizer() {
     }
 
     return (
-        <div>
+        <div style={{ padding: '32px' }}>
+          <h2 style={{ marginBottom: '16px' }}>Graph Traversals</h2>
             <div>
-                <h2>Graph</h2>
                 <svg width="500" height="500">
                 {graphData.edges.map(([a, b], index) => {
                     const positionA= getNodePosition(graphData.vertices.indexOf(a), graphData.vertices.length)
@@ -151,9 +152,11 @@ function GraphVisualizer() {
                 })} 
                 </svg>
             </div>
-
-            <button onClick={animateBFS}>BFS</button>
-            <button onClick={animateDFS}>DFS</button>
+            
+            <div style={{ padding: '32px' }}>
+            <button style={buttonStyle} onClick={animateBFS}>BFS</button>
+            <button style={buttonStyle} onClick={animateDFS}>DFS</button>
+            </div>
         </div>
     )
 }

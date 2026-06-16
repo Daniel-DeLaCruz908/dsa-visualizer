@@ -12,7 +12,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('sorting') 
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#fef9ef', color: 'black' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#fef9ef', color: 'black', display: 'flex', flexDirection: 'column' }}>
 
       <nav style={{
         backgroundColor: '#227c9d',
@@ -42,7 +42,7 @@ function App() {
         </div>
       </nav>
 
-      <div style={{ padding: '32px' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '48px'  }}>
         {activeTab === 'sorting' && <SortingVisualizer />}
         {activeTab === 'linkedlist' && <LinkedListVisualizer />}
         {activeTab === 'bst' && <BSTVisualizer />}

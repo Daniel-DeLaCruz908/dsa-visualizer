@@ -113,13 +113,15 @@ function LinkedListVisualizer() {
                 </span>
             ))}
 
+            <div style={{ padding: '32px' }}>
             <input
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-            />
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+              />
+            </div>
 
             </div>
-            <div style={{ padding: '32px' }}> 
+            <div> 
             <button style={buttonStyle} onClick={handleAppend}>Append</button>
             <button style={buttonStyle} onClick={handlePrepend}>Prepend</button>
             <button style={buttonStyle} onClick={handleDelete}>Delete</button>

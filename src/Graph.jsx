@@ -153,7 +153,7 @@ function GraphVisualizer() {
                 </svg>
             </div>
             
-            <div style={{ padding: '32px' }}>
+            <div>
             <button style={buttonStyle} onClick={animateBFS}>BFS</button>
             <button style={buttonStyle} onClick={animateDFS}>DFS</button>
             </div>

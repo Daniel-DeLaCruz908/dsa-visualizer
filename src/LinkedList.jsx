@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { buttonStyle } from './styles'
+import { colors } from './styles'
 
 class ListNode {
   constructor(value) {
@@ -102,7 +103,7 @@ function LinkedListVisualizer() {
                 <span key={index}>
                 <div style={{
                     display: 'inline-block',
-                    border: '2px solid steelblue',
+                    border: `2px solid ${colors.secondary}`,
                     padding: '8px',
                     borderRadius: '4px',
                     margin: '4px'

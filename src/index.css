@@ -119,3 +119,7 @@ code {
 body {
   background-color: #fef9ef;
 }
+
+input:focus {
+  outline: none;
+}

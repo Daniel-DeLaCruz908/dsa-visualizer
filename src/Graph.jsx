@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { buttonStyle } from './styles'
+import { colors } from './styles'
 
 class Graph {
   constructor() {
@@ -121,7 +122,7 @@ function GraphVisualizer() {
                         key={index}
                         x1={positionA.x} y1={positionA.y}
                         x2={positionB.x} y2={positionB.y}
-                        stroke="black"
+                        stroke={colors.secondary}
                         strokeWidth="2"
                     />
                     )
@@ -134,8 +135,8 @@ function GraphVisualizer() {
                         <circle
                         cx={position.x} cy={position.y}
                         r="20"
-                        fill={visitedNodes.includes(vertex) ? 'yellow' : 'steelblue'}
-                        stroke="black"
+                        fill={visitedNodes.includes(vertex) ? colors.primary : colors.secondary}
+                        stroke={colors.secondary}
                         strokeWidth="2"
                         />
                         <text

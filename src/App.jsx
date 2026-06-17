@@ -7,31 +7,32 @@ import SortingVisualizer from './SortingVisualizer'
 import LinkedListVisualizer from './LinkedList'
 import BSTVisualizer from './BST'
 import GraphVisualizer from './Graph'
+import { colors } from './styles'
 
 function App() { 
   const [activeTab, setActiveTab] = useState('sorting') 
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#fef9ef', color: 'black', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: colors.background, color: colors.text, display: 'flex', flexDirection: 'column' }}>
 
       <nav style={{
-        backgroundColor: '#227c9d',
+        backgroundColor: colors.surface,
         padding: '16px 32px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <h1 style={{ color: 'black', margin: 0, fontSize: '20px' }}>DSA Visualizer</h1>
+        <h1 style={{ color: colors.text, margin: 0, fontSize: '20px' }}>DSA Visualizer</h1>
         <div style={{ display: 'flex', gap: '8px' }}>
           {['sorting', 'linkedlist', 'bst', 'graph'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               style={{
-                backgroundColor: activeTab === tab ? '#ffcb77' : 'transparent',
-                color: 'black',
+                backgroundColor: activeTab === tab ? colors.primary : 'transparent',
+                color: colors.text,
                 border: 'none',
-                padding: '8px 16px',
+                padding: '8px',
                 borderRadius: '4px',
                 cursor: 'pointer'
               }}

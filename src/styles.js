@@ -1,7 +1,16 @@
+export const colors = {
+    background: '#fef9ef',
+    surface: '#227c9d',
+    primary: '#ffcb77',
+    secondary: 'rgb(104, 167, 209)',
+    text: '#000000',
+    textMuted: '#a0a0b0',
+}
+
 export const buttonStyle = {
     padding: '8px 16px',
-    backgroundColor: '#ffcb77',
-    color: 'black',
+    backgroundColor: colors.primary,
+    color: colors.text,
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',

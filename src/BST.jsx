@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { buttonStyle } from './styles'
+import { colors } from './styles'
 
 class BSTNode {
   constructor(value) {
@@ -162,6 +163,16 @@ function BSTVisualizer() {
     setTimeout(() => setHighlightNode(null), steps.length * 500)
     }
 
+    function shortenLine(x1, y1, x2, y2, offset) {
+      const angle = Math.atan2(y2 - y1, x2 - x1)
+      return {
+        x1: x1 + Math.cos(angle) * offset,
+        y1: y1 + Math.sin(angle) * offset,
+        x2: x2 - Math.cos(angle) * offset,
+        y2: y2 - Math.sin(angle) * offset
+      }
+    }
+
     return (
         <div style={{ padding: '32px' }}>
           <h2 style={{ marginBottom: '16px' }}>Binary Search Tree</h2>
@@ -188,8 +199,8 @@ function BSTVisualizer() {
                                 style={{
                                 border: `2px solid ${
                                 highlightedNode?.value === node.value 
-                                ? highlightedNode.found ? 'green' : 'yellow' 
-                                : 'coral'
+                                ? highlightedNode.found ? 'green' : colors.primary 
+                                : colors.secondary
                                 }`,
                                 padding: '8px',
                                 borderRadius: '4px',
@@ -226,20 +237,26 @@ function BSTVisualizer() {
                         
                         return (
                         <g key={key}>
-                            {parent && left && (
-                            <line
-                                x1={parent.x} y1={parent.y}
-                                x2={left.x} y2={left.y}
-                                stroke="coral" strokeWidth="1"
-                            />
-                            )}
-                            {parent && right && (
-                            <line
-                                x1={parent.x} y1={parent.y}
-                                x2={right.x} y2={right.y}
-                                stroke="coral" strokeWidth="1"
-                            />
-                            )}
+                            {parent && left && (() => {
+                              const adjusted = shortenLine(parent.x, parent.y, left.x, left.y, 25)
+                              return (
+                                <line
+                                  x1={adjusted.x1} y1={adjusted.y1}
+                                  x2={adjusted.x2} y2={adjusted.y2}
+                                  stroke={colors.secondary} strokeWidth="1"
+                                />
+                              )
+                            })()}
+                            {parent && right && (() => {
+                              const adjusted = shortenLine(parent.x, parent.y, right.x, right.y, 25)
+                              return (
+                                <line
+                                  x1={adjusted.x1} y1={adjusted.y1}
+                                  x2={adjusted.x2} y2={adjusted.y2}
+                                  stroke={colors.secondary} strokeWidth="1"
+                                />
+                              )
+                            })()}
                         </g>
                         )
                     })

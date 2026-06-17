@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { buttonStyle } from './styles'
+import { colors } from './styles'
 
 function SortingVisualizer() {
     function generateArray() {
@@ -118,7 +119,7 @@ function SortingVisualizer() {
             <h2 style={{ marginBottom: '16px' }}>Binary & Insertion Sort</h2>
             <div style={{ whiteSpace: 'nowrap' }}>
             {array.map((value, index) => (
-                <div key={index} style={{height: value, width: 20, backgroundColor: comparing.includes(index) ? 'red' : 'steelblue', display: 'inline-block', verticalAlign: 'bottom'}}></div>
+                <div key={index} style={{height: value, width: 20, backgroundColor: comparing.includes(index) ? colors.primary : colors.secondary, display: 'inline-block', verticalAlign: 'bottom'}}></div>
             ))} 
             </div>
 

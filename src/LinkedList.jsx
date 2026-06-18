@@ -123,9 +123,9 @@ function LinkedListVisualizer() {
 
             </div>
             <div> 
-            <button style={buttonStyle} onClick={handleAppend}>Append</button>
-            <button style={buttonStyle} onClick={handlePrepend}>Prepend</button>
-            <button style={buttonStyle} onClick={handleDelete}>Delete</button>
+            <button className="btn" style={buttonStyle} onClick={handleAppend}>Append</button>
+            <button className="btn" style={buttonStyle} onClick={handlePrepend}>Prepend</button>
+            <button className="btn" style={buttonStyle} onClick={handleDelete}>Delete</button>
             </div>
         </div>
     )

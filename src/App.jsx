@@ -8,9 +8,10 @@ import LinkedListVisualizer from './LinkedList'
 import BSTVisualizer from './BST'
 import GraphVisualizer from './Graph'
 import { colors } from './styles'
+import Home from './Home'
 
 function App() { 
-  const [activeTab, setActiveTab] = useState('sorting') 
+  const [activeTab, setActiveTab] = useState('home') 
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: colors.background, color: colors.text, display: 'flex', flexDirection: 'column' }}>
@@ -24,7 +25,7 @@ function App() {
       }}>
         <h1 style={{ color: colors.text, margin: 0, fontSize: '20px' }}>DSA Visualizer</h1>
         <div style={{ display: 'flex', gap: '8px' }}>
-          {['sorting', 'linkedlist', 'bst', 'graph'].map((tab) => (
+          {['home', 'sorting', 'linkedlist', 'bst', 'graph'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -44,6 +45,7 @@ function App() {
       </nav>
 
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '48px'  }}>
+        {activeTab === 'home' && <Home setActiveTab={setActiveTab} />}
         {activeTab === 'sorting' && <SortingVisualizer />}
         {activeTab === 'linkedlist' && <LinkedListVisualizer />}
         {activeTab === 'bst' && <BSTVisualizer />}

@@ -269,8 +269,8 @@ function BSTVisualizer() {
                 onChange={(e) => setInputValue(e.target.value)}
                 />
                 <div style={{ padding: '32px' }}>
-                <button style={buttonStyle} onClick={handleInsert}>Insert</button>
-                <button style={buttonStyle} onClick={animateSearch}>Search</button>
+                <button className="btn" style={buttonStyle} onClick={handleInsert}>Insert</button>
+                <button className="btn" style={buttonStyle} onClick={animateSearch}>Search</button>
                 </div>
         </div>
     )

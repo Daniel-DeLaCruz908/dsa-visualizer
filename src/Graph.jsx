@@ -155,8 +155,8 @@ function GraphVisualizer() {
             </div>
             
             <div>
-            <button style={buttonStyle} onClick={animateBFS}>BFS</button>
-            <button style={buttonStyle} onClick={animateDFS}>DFS</button>
+            <button className="btn" style={buttonStyle} onClick={animateBFS}>BFS</button>
+            <button className="btn" style={buttonStyle} onClick={animateDFS}>DFS</button>
             </div>
         </div>
     )

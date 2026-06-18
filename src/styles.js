@@ -4,7 +4,7 @@ export const colors = {
     primary: '#ffcb77',
     secondary: 'rgb(104, 167, 209)',
     text: '#000000',
-    textMuted: '#a0a0b0',
+    textMuted: '#4f4f50',
 }
 
 export const buttonStyle = {

@@ -124,10 +124,10 @@ function SortingVisualizer() {
             </div>
 
             <div style={{ padding: '32px' }}>
-                <button style={buttonStyle} onClick={() => setArray(generateArray())} disabled={isSorting}>Shuffle</button>
-                <button style={buttonStyle} onClick={() => setArray(bubbleSort([...array]))} disabled={isSorting}>Sort</button>
-                <button style={buttonStyle} onClick={animateSort} disabled={isSorting}>Animate</button>
-                <button style={buttonStyle} onClick={animateInsertion} disabled={isSorting}>Animate Insertion</button>
+                <button className="btn" style={buttonStyle} onClick={() => setArray(generateArray())} disabled={isSorting}>Shuffle</button>
+                <button className="btn" style={buttonStyle} onClick={() => setArray(bubbleSort([...array]))} disabled={isSorting}>Sort</button>
+                <button className="btn" style={buttonStyle} onClick={animateSort} disabled={isSorting}>Animate</button>
+                <button className="btn" style={buttonStyle} onClick={animateInsertion} disabled={isSorting}>Animate Insertion</button>
             </div>
         </div>
     )

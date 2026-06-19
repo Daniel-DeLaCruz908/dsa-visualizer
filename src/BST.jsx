@@ -107,10 +107,46 @@ class BST {
       }
     }
   }
+
+  findMin(node) {
+    let current = node
+    while (current.left !== null) {
+      current = current.left
+    } 
+    return current.value
+  }
+
+  delete(value) {
+    this.root = this.deleteNode(this.root, value)
+  }
+
+  deleteNode(node, value) {
+    if (node === null) return null
+
+    if (value < node.value) {
+      node.left = this.deleteNode(node.left, value)
+    } else if (value > node.value) {
+      node.right = this.deleteNode(node.right, value)
+    } else {
+      if (node.left === null) { return node.right }
+      else if (node.right === null) { return node.left }
+      else {
+        const minValue = this.findMin(node.right)
+        node.value = minValue
+        node.right = this.deleteNode(node.right, minValue)
+      }
+    }
+    return node
+  }
+  
 }
 
 function BSTVisualizer() {
-    const [bstArray, setBstArray] = useState([10, 5, 15, 3])
+    const [bst, setBst] = useState(() => {
+      const tree = new BST()
+      ;[10, 5, 15, 3].forEach(v => tree.insert(v))
+      return tree
+    })
     // stores the pixel position of each node
     const [nodePositions, setNodePositions] = useState({})
     // stores a ref for each node
@@ -126,9 +162,14 @@ function BSTVisualizer() {
         return tree
       }
     
+    function refreshTree(tree) {
+      setBst(Object.assign(Object.create(Object.getPrototypeOf(tree)), tree))
+    }
+
     function handleInsert() {
-    setBstArray([...bstArray, Number(inputValue)])
-    setInputValue('')
+      bst.insert(Number(inputValue))
+      refreshTree(bst)
+      setInputValue('')
     }
 
     useEffect(() => {
@@ -150,11 +191,11 @@ function BSTVisualizer() {
         }
         })
         setNodePositions(positions)
-    }, [bstArray])
-    })
+      }, 100)
+    }, [bst])
 
     function animateSearch() {
-    const steps = buildBST(bstArray).getSearchSteps(Number(inputValue))
+    const steps = bst.getSearchSteps(Number(inputValue))
     steps.forEach((step, index) => {
         setTimeout(() => {
         setHighlightNode(step)
@@ -173,11 +214,17 @@ function BSTVisualizer() {
       }
     }
 
+    function handleDelete() {
+      bst.delete(Number(inputValue))
+      refreshTree(bst)
+      setInputValue('')
+    }
+
     return (
         <div style={{ padding: '32px' }}>
           <h2 style={{ marginBottom: '16px' }}>Binary Search Tree</h2>
             <div ref={containerRef} style={{ position: 'relative' }}>
-                {buildBST(bstArray).toLevels().map((level, levelIndex) => {
+                {bst.toLevels().map((level, levelIndex) => {
                 // number of possible slots doubles each level (1, 2, 4, 8...)
                     const totalSlots = Math.pow(2, levelIndex)
                         
@@ -224,7 +271,7 @@ function BSTVisualizer() {
                     height: '100%',
                     pointerEvents: 'none' 
                 }}>
-                    {buildBST(bstArray).toLevels().map((level, levelIndex) => {
+                    {bst.toLevels().map((level, levelIndex) => {
                     const totalSlots = Math.pow(2, levelIndex)
                     return level.map(node => {
                         const key = `${levelIndex}-${node.position % totalSlots}`
@@ -271,6 +318,7 @@ function BSTVisualizer() {
                 <div style={{ padding: '32px' }}>
                 <button className="btn" style={buttonStyle} onClick={handleInsert}>Insert</button>
                 <button className="btn" style={buttonStyle} onClick={animateSearch}>Search</button>
+                <button className="btn" style={buttonStyle} onClick={handleDelete}>Delete</button>
                 </div>
         </div>
     )

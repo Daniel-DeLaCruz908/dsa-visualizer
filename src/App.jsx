@@ -9,6 +9,7 @@ import BSTVisualizer from './BST'
 import GraphVisualizer from './Graph'
 import { colors } from './styles'
 import Home from './Home'
+import DynamicProgramming from './DynamicProgramming'
 
 function App() { 
   const [activeTab, setActiveTab] = useState('home') 
@@ -25,7 +26,7 @@ function App() {
       }}>
         <h1 style={{ color: colors.text, margin: 0, fontSize: '20px' }}>DSA Visualizer</h1>
         <div style={{ display: 'flex', gap: '8px' }}>
-          {['home', 'sorting', 'linkedlist', 'bst', 'graph'].map((tab) => (
+          {['home', 'sorting', 'linkedlist', 'bst', 'graph', 'DP'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -50,6 +51,7 @@ function App() {
         {activeTab === 'linkedlist' && <LinkedListVisualizer />}
         {activeTab === 'bst' && <BSTVisualizer />}
         {activeTab === 'graph' && <GraphVisualizer />}
+        {activeTab === 'DP' && <DynamicProgramming />}
       </div>
 
     </div> 
